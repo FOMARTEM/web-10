@@ -2,17 +2,18 @@ package main
 
 import (
 	"flag"
+	"log"
+
 	"github.com/ValeryBMSTU/web-10/internal/hello/api"
 	"github.com/ValeryBMSTU/web-10/internal/hello/config"
 	"github.com/ValeryBMSTU/web-10/internal/hello/provider"
 	"github.com/ValeryBMSTU/web-10/internal/hello/usecase"
 	_ "github.com/lib/pq"
-	"log"
 )
 
 func main() {
 	// Считываем аргументы командной строки
-	configPath := flag.String("config-path", "./configs/hello_example.yaml", "путь к файлу конфигурации")
+	configPath := flag.String("config-path", "../../configs/hello_example.yaml", "путь к файлу конфигурации")
 	flag.Parse()
 
 	cfg, err := config.LoadConfig(*configPath)
@@ -25,4 +26,5 @@ func main() {
 	srv := api.NewServer(cfg.IP, cfg.Port, cfg.API.MaxMessageSize, use)
 
 	srv.Run()
+
 }
