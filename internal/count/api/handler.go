@@ -27,7 +27,7 @@ func (srv *Server) PostCount(e echo.Context) error {
 		return e.String(http.StatusInternalServerError, err.Error())
 	}
 
-	if input.Msg == -1 {
+	if input.Msg == 0 {
 		return e.String(http.StatusBadRequest, "msg is empty")
 	}
 
@@ -40,5 +40,5 @@ func (srv *Server) PostCount(e echo.Context) error {
 		return e.String(http.StatusInternalServerError, err.Error())
 	}
 
-	return e.String(http.StatusCreated, "OK")
+	return e.String(http.StatusCreated, "Ok")
 }
