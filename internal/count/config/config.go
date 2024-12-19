@@ -14,7 +14,7 @@ type api struct {
 }
 
 type usecase struct {
-	DefaultMessage string `yaml:"default_message_count"`
+	DefaultMessage int `yaml:"default_message_count"`
 }
 
 type db struct {
