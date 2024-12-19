@@ -1,12 +1,12 @@
 package usecase
 
 type Usecase struct {
-	defaultMsg string
+	defaultMsg int
 
 	p Provider
 }
 
-func NewUsecase(defaultMsg string, p Provider) *Usecase {
+func NewUsecase(defaultMsg int, p Provider) *Usecase {
 	return &Usecase{
 		defaultMsg: defaultMsg,
 		p:          p,
