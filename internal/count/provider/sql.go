@@ -8,7 +8,7 @@ import (
 func (p *Provider) FetchCount() (int, error) {
 	var msg int
 
-	err := p.conn.QueryRow("SELECT number FROM counts LIMIT 1").Scan(&msg)
+	err := p.conn.QueryRow("SELECT number FROM counts").Scan(&msg)
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
 			return 0, nil
@@ -21,7 +21,7 @@ func (p *Provider) FetchCount() (int, error) {
 
 func (p *Provider) CheckCountExist() (bool, error) {
 	msg := 1
-	err := p.conn.QueryRow("SELECT number FROM counts LIMIT 1", msg).Scan(&msg)
+	err := p.conn.QueryRow("SELECT number FROM counts WHERE number_id = $1", msg).Scan(&msg)
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
 			return false, nil
@@ -33,7 +33,7 @@ func (p *Provider) CheckCountExist() (bool, error) {
 }
 
 func (p *Provider) UpdateCount(count int) error {
-	_, err := p.conn.Exec("UPDATE counts SET number = number + $1", count)
+	_, err := p.conn.Exec("UPDATE counts SET number = number + $1 WHERE number_id = 1", count)
 	if err != nil {
 		return err
 	}
