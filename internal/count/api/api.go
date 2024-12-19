@@ -28,3 +28,7 @@ func NewServer(ip string, port int, maxSize int, uc Usecase) *Server {
 
 	return &api
 }
+
+func (api *Server) Run() {
+	api.server.Logger.Fatal(api.server.Start(api.address))
+}
