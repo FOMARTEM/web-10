@@ -8,7 +8,7 @@ import (
 func (p *Provider) FetchQuery(name string) (string, error) {
 	var msg string
 
-	err := p.conn.QueryRow("SELECT name FROM query WHERE name = $1", name).Scan(&msg)
+	err := p.conn.QueryRow("SELECT name FROM usernames WHERE name = $1", name).Scan(&msg)
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
 			return "", nil
@@ -21,7 +21,7 @@ func (p *Provider) FetchQuery(name string) (string, error) {
 
 func (p *Provider) CheckQueryExist(name string) (bool, error) {
 	var msg string
-	err := p.conn.QueryRow("SELECT name FROM query WHERE name = $1", name).Scan(&msg)
+	err := p.conn.QueryRow("SELECT name FROM usernames WHERE name = $1", name).Scan(&msg)
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
 			return false, nil
@@ -33,7 +33,7 @@ func (p *Provider) CheckQueryExist(name string) (bool, error) {
 }
 
 func (p *Provider) InsertQuery(name string) error {
-	_, err := p.conn.Exec("INSERT INTO query (name) VALUES ($1)", name)
+	_, err := p.conn.Exec("INSERT INTO usernames (name) VALUES ($1)", name)
 	if err != nil {
 		return err
 	}
