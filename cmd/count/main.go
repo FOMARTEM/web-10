@@ -4,16 +4,16 @@ import (
 	"flag"
 	"log"
 
-	"github.com/ValeryBMSTU/web-10/internal/hello/api"
-	"github.com/ValeryBMSTU/web-10/internal/hello/config"
-	"github.com/ValeryBMSTU/web-10/internal/hello/provider"
-	"github.com/ValeryBMSTU/web-10/internal/hello/usecase"
+	"github.com/ValeryBMSTU/web-10/internal/count/api"
+	"github.com/ValeryBMSTU/web-10/internal/count/config"
+	"github.com/ValeryBMSTU/web-10/internal/count/provider"
+	"github.com/ValeryBMSTU/web-10/internal/count/usecase"
 	_ "github.com/lib/pq"
 )
 
 func main() {
 	// Считываем аргументы командной строки
-	configPath := flag.String("config-path", "../../configs/hello.yaml", "путь к файлу конфигурации")
+	configPath := flag.String("config-path", "../../configs/count.yaml", "путь к файлу конфигурации")
 	flag.Parse()
 
 	cfg, err := config.LoadConfig(*configPath)
