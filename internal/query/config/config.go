@@ -2,7 +2,7 @@ package config
 
 type Config struct {
 	IP   string `yaml:"ip"`
-	Port int    `yaml:"port_query"`
+	Port int    `yaml:"port"`
 
 	API     api     `yaml:"api"`
 	Usecase usecase `yaml:"usecase"`
